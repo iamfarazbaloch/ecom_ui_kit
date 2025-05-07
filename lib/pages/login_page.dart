@@ -1,3 +1,4 @@
+import 'package:ecom_ui_kit/pages/get_started_page.dart';
 import 'package:ecom_ui_kit/widgets/my_button.dart';
 import 'package:ecom_ui_kit/widgets/my_search_field.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +58,15 @@ class LoginPage extends StatelessWidget {
                 ],
               ),
               Gap(30),
-              MyButton(text: 'Login', onTap: () {}),
+              MyButton(
+                text: 'Login',
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => GetStartedPage()),
+                  );
+                },
+              ),
               Gap(50),
               Center(child: Text('- Or Continue with -')),
               Gap(30),
