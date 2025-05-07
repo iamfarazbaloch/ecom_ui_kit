@@ -3,6 +3,7 @@ import 'package:ecom_ui_kit/widgets/my_search_field.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
+import 'forget_page.dart';
 import 'signup_page.dart';
 
 class LoginPage extends StatelessWidget {
@@ -42,7 +43,12 @@ class LoginPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ForgetPage()),
+                      );
+                    },
                     child: Text(
                       'Forgot Password?',
                       style: TextStyle(color: Colors.red, fontSize: 16),

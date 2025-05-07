@@ -50,7 +50,7 @@ class SignupPage extends StatelessWidget {
               ),
 
               Gap(40),
-              MyButton(text: 'Sign Up', onTap: () {}),
+              MyButton(text: 'Create an Account', onTap: () {}),
               Gap(50),
               Center(child: Text('- Or Continue with -')),
               Gap(30),
