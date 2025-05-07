@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,17 @@ class LoginPage extends StatelessWidget {
                 style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
               ),
               Gap(20),
-              MySearchField(),
+              MySearchField(
+                icon: Icons.person,
+                hint: 'Username or Email',
+                controller: emailController,
+              ),
+              Gap(20),
+              MySearchField(
+                controller: passwordController,
+                hint: 'Password',
+                icon: Icons.lock,
+              ),
             ],
           ),
         ),
