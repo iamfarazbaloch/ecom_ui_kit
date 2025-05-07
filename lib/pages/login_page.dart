@@ -3,6 +3,8 @@ import 'package:ecom_ui_kit/widgets/my_search_field.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
+import 'signup_page.dart';
+
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
   final emailController = TextEditingController();
@@ -52,6 +54,18 @@ class LoginPage extends StatelessWidget {
               MyButton(text: 'Login', onTap: () {}),
               Gap(50),
               Center(child: Text('- Or Continue with -')),
+              Gap(30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('assets/icons/gl.png'),
+                  Gap(10),
+                  Image.asset('assets/icons/ap.png'),
+                  Gap(10),
+                  Image.asset('assets/icons/fb.png'),
+                ],
+              ),
+              Gap(20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -60,7 +74,12 @@ class LoginPage extends StatelessWidget {
                     style: TextStyle(color: Colors.grey, fontSize: 16),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SignupPage()),
+                      );
+                    },
                     child: Text(
                       'Sign Up',
                       style: TextStyle(color: Colors.red, fontSize: 16),
