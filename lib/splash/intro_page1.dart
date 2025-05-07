@@ -27,7 +27,7 @@ class IntroPage1 extends StatelessWidget {
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w300,
               ),
             ),
           ),

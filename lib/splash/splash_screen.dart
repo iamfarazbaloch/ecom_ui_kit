@@ -23,6 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Stack(
         children: [
+          // PageView content
           PageView(
             controller: _controller,
             onPageChanged: (index) {
@@ -33,6 +34,21 @@ class _SplashScreenState extends State<SplashScreen> {
             children: const [IntroPage1(), IntroPage2(), IntroPage3()],
           ),
 
+          // Top-left page number
+          Positioned(
+            top: 50,
+            left: 30,
+            child: Text(
+              '${currentPage + 1}/3',
+              style: const TextStyle(
+                fontSize: 15,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+
+          // Top-right skip
           Positioned(
             top: 50,
             right: 30,
@@ -54,10 +70,11 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ),
 
+          // Bottom navigation controls (unchanged position)
           Positioned(
-            bottom: 30,
+            bottom: 50,
             left: 20,
-            right: 20,
+            right: 30,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
