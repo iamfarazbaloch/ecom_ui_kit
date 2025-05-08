@@ -48,6 +48,9 @@ class _HomePageState extends State<HomePage> {
             _buildProductList2(),
             Gap(20),
             _hotDeal(),
+            Gap(20),
+            _sponsored(),
+            Gap(30),
           ],
         ),
       ),
@@ -569,120 +572,170 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildProductList2() {
-    return SizedBox(
-      height: 350,
+    return Expanded(
+      child: SizedBox(
+        height: 350,
 
-      child: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        scrollDirection: Axis.horizontal,
+        child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          scrollDirection: Axis.horizontal,
 
-        children: [
-          _buildCategoryCard(
-            'assets/images/w.png',
-            'IWC Schaffhausen',
-            'Neque porro quisquam est qui dolorem ipsum quia',
-            '250',
-            '50%',
-          ),
-          Gap(16),
-          _buildCategoryCard(
-            'assets/images/sandal.png',
-            'Do Bhai Women Sandal',
-            'Neque porro quisquam est qui dolorem ipsum quia',
-            '250',
-            '50%',
-          ),
-          Gap(16),
-          _buildCategoryCard(
-            'assets/images/sn.png',
-            'Labbin White Sneakers',
-            'Hair Straightening Brush With Infused Bristles.',
-            '250',
-            '50%',
-          ),
-          Gap(16),
-          _buildCategoryCard(
-            'assets/images/lp.png',
-            'Persian purse',
-            'The Titan Men Watch is a modern black color',
-            '250',
-            '50%',
-          ),
-          Gap(16),
-          _buildCategoryCard(
-            'assets/images/lip.png',
-            'Lipstick',
-            'The Titan Men Watch is a modern black color',
-            '250',
-            '50%',
-          ),
-        ],
+          children: [
+            _buildCategoryCard(
+              'assets/images/w.png',
+              'IWC Schaffhausen',
+              'Neque porro quisquam est qui dolorem ipsum quia',
+              '250',
+              '50%',
+            ),
+            Gap(16),
+            _buildCategoryCard(
+              'assets/images/sandal.png',
+              'Do Bhai Women Sandal',
+              'Neque porro quisquam est qui dolorem ipsum quia',
+              '250',
+              '50%',
+            ),
+            Gap(16),
+            _buildCategoryCard(
+              'assets/images/sn.png',
+              'Labbin White Sneakers',
+              'Hair Straightening Brush With Infused Bristles.',
+              '250',
+              '50%',
+            ),
+            Gap(16),
+            _buildCategoryCard(
+              'assets/images/lp.png',
+              'Persian purse',
+              'The Titan Men Watch is a modern black color',
+              '250',
+              '50%',
+            ),
+            Gap(16),
+            _buildCategoryCard(
+              'assets/images/lip.png',
+              'Lipstick',
+              'The Titan Men Watch is a modern black color',
+              '250',
+              '50%',
+            ),
+          ],
+        ),
       ),
     );
   }
 
   Widget _hotDeal() {
-    return Container(
-      height: 340,
-      width: double.infinity,
-      margin: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.grey.shade100,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            width: double.infinity,
-            height: 240,
-            child: ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
+    return Expanded(
+      child: Container(
+        height: 340,
+        width: double.infinity,
+        margin: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.grey.shade100,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: double.infinity,
+              height: 240,
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+                child: Image.asset('assets/images/hot.png', fit: BoxFit.cover),
               ),
-              child: Image.asset('assets/images/hot.png', fit: BoxFit.cover),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              'New Arrivals',
-              style: TextStyle(color: Colors.black, fontSize: 22),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'New Arrivals',
+                style: TextStyle(color: Colors.black, fontSize: 22),
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Summer's 25 Collection",
-                  style: TextStyle(color: Colors.black, fontSize: 18),
-                ),
-                Container(
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    border: Border.all(color: Colors.white),
-                    borderRadius: BorderRadius.circular(8),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Summer's 25 Collection",
+                    style: TextStyle(color: Colors.black, fontSize: 18),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'See All',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
+                  Container(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'See All',
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
 
-                      Icon(Icons.arrow_forward, color: Colors.white),
-                    ],
+                        Icon(Icons.arrow_forward, color: Colors.white),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _sponsored() {
+    return Expanded(
+      child: Container(
+        margin: EdgeInsets.all(16),
+        padding: EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Colors.grey.shade100,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Text(
+                'Sponsored',
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
+            ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                'assets/images/sponser.png',
+                width: double.infinity,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 16.0,
+                right: 16.0,
+                top: 16.0,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Up to 50% off', style: TextStyle(fontSize: 16)),
+                  Icon(Icons.arrow_forward),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
