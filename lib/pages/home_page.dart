@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final PageController _pageController = PageController();
 
-  Map<String, String> products = {
+  final Map<String, String> products = {
     'assets/icons/beauty.png': 'Beauty',
     'assets/icons/fashion.png': 'Fashion',
     'assets/icons/kids.png': 'Kids',
@@ -27,137 +27,41 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: ListView(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(Icons.menu),
-                  Image.asset('assets/images/splash.png', width: 100),
-                  Image.asset('assets/icons/profile.png'),
-                ],
-              ),
-            ),
+            _buildHeader(),
             Gap(20),
-            _searchField(),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16.0,
-                vertical: 12,
-              ),
-              child: Row(
-                children: [
-                  Text(
-                    'All Features',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
-                  ),
-                  Spacer(),
-                  Container(
-                    padding: EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Sort',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey.shade800,
-                          ),
-                        ),
-                        Gap(6),
-                        Image.asset('assets/icons/sort.png'),
-                      ],
-                    ),
-                  ),
-                  Gap(5),
-                  Container(
-                    padding: EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Filter',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.grey.shade800,
-                          ),
-                        ),
-                        Gap(6),
-                        Image.asset('assets/icons/filter.png'),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              height: 110,
-              padding: EdgeInsets.only(top: 12),
-              margin: EdgeInsets.only(left: 20),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade200,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  bottomLeft: Radius.circular(20),
-                ),
-              ),
-              child: ListView.builder(
-                itemCount: products.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                    child: Column(
-                      children: [
-                        Image.asset(products.keys.toList()[index]),
-                        Gap(10),
-                        Text(products.values.toList()[index]),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-            SizedBox(
-              height: 230,
-              width: double.infinity,
-              child: PageView(
-                controller: _pageController,
-                children: [_card(), _card(), _card()],
-              ),
-            ),
+            _buildSearchField(),
+            _buildFeatureSortFilter(),
+            _buildCategoryScroll(),
+            _buildCarousel(),
             Gap(10),
-            Center(
-              child: SmoothPageIndicator(
-                controller: _pageController,
-                count: 3,
-                effect: ExpandingDotsEffect(
-                  dotHeight: 8,
-                  dotWidth: 8,
-                  activeDotColor: Colors.pink.shade200,
-                  dotColor: Colors.grey.shade300,
-                ),
-              ),
-            ),
+            _buildPageIndicator(),
             Gap(12),
-            _dealCard(),
+            _buildDealCard(),
             Gap(12),
-            ListView(children: []),
+            _buildProductList(),
+            Gap(20),
+            _offerCard(),
           ],
         ),
       ),
     );
   }
 
-  Widget _searchField() {
+  Widget _buildHeader() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Icon(Icons.menu),
+          Image.asset('assets/images/splash.png', width: 100),
+          Image.asset('assets/icons/profile.png'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSearchField() {
     return Container(
       margin: EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -177,10 +81,100 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _card() {
+  Widget _buildFeatureSortFilter() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      child: Row(
+        children: [
+          Text(
+            'All Features',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
+          ),
+          Spacer(),
+          _buildSortFilterItem('Sort', 'assets/icons/sort.png'),
+          Gap(5),
+          _buildSortFilterItem('Filter', 'assets/icons/filter.png'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSortFilterItem(String label, String iconPath) {
+    return Container(
+      padding: EdgeInsets.all(6),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade200,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        children: [
+          Text(
+            label,
+            style: TextStyle(fontSize: 16, color: Colors.grey.shade800),
+          ),
+          Gap(6),
+          Image.asset(iconPath),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCategoryScroll() {
+    return Container(
+      height: 110,
+      padding: EdgeInsets.only(top: 12),
+      margin: EdgeInsets.only(left: 20),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade200,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          bottomLeft: Radius.circular(20),
+        ),
+      ),
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: products.length,
+        itemBuilder: (context, index) {
+          final icon = products.keys.toList()[index];
+          final label = products.values.toList()[index];
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: Column(children: [Image.asset(icon), Gap(10), Text(label)]),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildCarousel() {
+    return SizedBox(
+      height: 230,
+      child: PageView.builder(
+        controller: _pageController,
+        itemCount: 3,
+        itemBuilder: (_, __) => _buildPromoCard(),
+      ),
+    );
+  }
+
+  Widget _buildPageIndicator() {
+    return Center(
+      child: SmoothPageIndicator(
+        controller: _pageController,
+        count: 3,
+        effect: ExpandingDotsEffect(
+          dotHeight: 8,
+          dotWidth: 8,
+          activeDotColor: Colors.pink.shade200,
+          dotColor: Colors.grey.shade300,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPromoCard() {
     return Container(
       margin: EdgeInsets.all(16),
-      width: double.infinity,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/images/card.png'),
@@ -206,25 +200,19 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Text(
                   "Now in (products)",
-                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  style: TextStyle(color: Colors.white),
                 ),
-                Text(
-                  "All colors",
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
+                Text("All colors", style: TextStyle(color: Colors.white)),
                 Container(
                   padding: EdgeInsets.all(8),
                   margin: EdgeInsets.only(top: 16),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
                     border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(16),
                   ),
                   child: Row(
                     children: [
-                      Text(
-                        'Shop Now',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
+                      Text('Shop Now', style: TextStyle(color: Colors.white)),
                       Icon(Icons.arrow_forward, color: Colors.white),
                     ],
                   ),
@@ -237,16 +225,14 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _dealCard() {
+  Widget _buildDealCard() {
     return Container(
-      height: 100,
       margin: EdgeInsets.all(16),
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.blue,
         borderRadius: BorderRadius.circular(16),
       ),
-
       child: Row(
         children: [
           Column(
@@ -277,18 +263,14 @@ class _HomePageState extends State<HomePage> {
           Container(
             padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
               border: Border.all(color: Colors.white),
+              borderRadius: BorderRadius.circular(8),
             ),
             child: Row(
               children: [
                 Text(
                   'See All',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    letterSpacing: 1.5,
-                  ),
+                  style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
                 Gap(5),
                 Icon(Icons.arrow_forward, color: Colors.white),
@@ -300,12 +282,146 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _categoryCard() {
+  Widget _buildProductList() {
+    return SizedBox(
+      height: 280,
+
+      child: ListView(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        scrollDirection: Axis.horizontal,
+
+        children: [
+          _buildCategoryCard(
+            'assets/images/girl.png',
+            'Women Printed Kurta',
+            'Neque porro quisquam est qui dolorem ipsum quia',
+            '250',
+            '50%',
+          ),
+          Gap(16),
+          _buildCategoryCard(
+            'assets/images/show.png',
+            'HRX by Hrithik Roshan',
+            'Neque porro quisquam est qui dolorem ipsum quia',
+            '250',
+            '50%',
+          ),
+          Gap(16),
+          _buildCategoryCard(
+            'assets/images/girl2.png',
+            'Philips BHH880/10',
+            'Hair Straightening Brush With Infused Bristles.',
+            '250',
+            '50%',
+          ),
+          Gap(16),
+          _buildCategoryCard(
+            'assets/images/watch.png',
+            'TITAN Men Watch',
+            'The Titan Men Watch is a modern black color',
+            '250',
+            '50%',
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCategoryCard(
+    String image,
+    String title,
+    String description,
+    String price,
+    String priceOff,
+  ) {
     return Container(
-      height: 200,
-      width: 200,
-      decoration: BoxDecoration(),
-      child: Column(),
+      width: 180,
+      padding: EdgeInsets.all(4),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade200,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+            child: Image.asset(image),
+          ),
+          Gap(10),
+          Text(
+            title,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          Gap(4),
+          Text(description),
+          Gap(4),
+          Text(
+            '\$ $price',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              fontSize: 16,
+            ),
+          ),
+
+          Row(
+            children: [
+              Text(
+                '\$ 500',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  decoration: TextDecoration.lineThrough,
+                  color: Colors.grey.shade600,
+                ),
+              ),
+              Text(
+                priceOff,
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: const [
+              Icon(Icons.star, color: Colors.amber, size: 20),
+              Icon(Icons.star, color: Colors.amber, size: 20),
+              Icon(Icons.star, color: Colors.amber, size: 20),
+              Icon(Icons.star, color: Colors.amber, size: 20),
+              Icon(Icons.star_half, color: Colors.amber, size: 20),
+              Text('(200)', style: TextStyle(color: Colors.grey)),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _offerCard() {
+    return Container(
+      width: 180,
+      padding: EdgeInsets.all(4),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade200,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+            child: Image.asset('assets/images/offer.png'),
+          ),
+        ],
+      ),
     );
   }
 }
