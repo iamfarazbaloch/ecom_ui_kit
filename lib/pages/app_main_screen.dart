@@ -50,7 +50,10 @@ class _AppMainScreenState extends State<AppMainScreen> {
             icon: Icon(Icons.favorite_border_outlined),
             label: 'Wishlist',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: ''),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart_outlined),
+            label: '',
+          ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search_outlined),
             label: 'Search',
