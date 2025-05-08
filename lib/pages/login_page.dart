@@ -18,91 +18,93 @@ class LoginPage extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 18.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Welcome\nBack!',
-                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-              ),
-              Gap(30),
-              MySearchField(
-                icon: Icons.person,
-                hint: 'Username or Email',
-                controller: emailController,
-                obscureText: false,
-              ),
-              Gap(30),
-              MySearchField(
-                controller: passwordController,
-                hint: 'Password',
-                icon: Icons.lock,
-                obscureText: true,
-              ),
-              Gap(10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => ForgetPage()),
-                      );
-                    },
-                    child: Text(
-                      'Forgot Password?',
-                      style: TextStyle(color: Colors.red, fontSize: 16),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Welcome\nBack!',
+                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                ),
+                Gap(30),
+                MySearchField(
+                  icon: Icons.person,
+                  hint: 'Username or Email',
+                  controller: emailController,
+                  obscureText: false,
+                ),
+                Gap(30),
+                MySearchField(
+                  controller: passwordController,
+                  hint: 'Password',
+                  icon: Icons.lock,
+                  obscureText: true,
+                ),
+                Gap(10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ForgetPage()),
+                        );
+                      },
+                      child: Text(
+                        'Forgot Password?',
+                        style: TextStyle(color: Colors.red, fontSize: 16),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              Gap(30),
-              MyButton(
-                text: 'Login',
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => GetStartedPage()),
-                  );
-                },
-              ),
-              Gap(50),
-              Center(child: Text('- Or Continue with -')),
-              Gap(30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset('assets/icons/gl.png'),
-                  Gap(10),
-                  Image.asset('assets/icons/ap.png'),
-                  Gap(10),
-                  Image.asset('assets/icons/fb.png'),
-                ],
-              ),
-              Gap(20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Don\'t have an account?',
-                    style: TextStyle(color: Colors.grey, fontSize: 16),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SignupPage()),
-                      );
-                    },
-                    child: Text(
-                      'Sign Up',
-                      style: TextStyle(color: Colors.red, fontSize: 16),
+                  ],
+                ),
+                Gap(30),
+                MyButton(
+                  text: 'Login',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => GetStartedPage()),
+                    );
+                  },
+                ),
+                Gap(50),
+                Center(child: Text('- Or Continue with -')),
+                Gap(30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/icons/gl.png'),
+                    Gap(10),
+                    Image.asset('assets/icons/ap.png'),
+                    Gap(10),
+                    Image.asset('assets/icons/fb.png'),
+                  ],
+                ),
+                Gap(20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Don\'t have an account?',
+                      style: TextStyle(color: Colors.grey, fontSize: 16),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignupPage()),
+                        );
+                      },
+                      child: Text(
+                        'Sign Up',
+                        style: TextStyle(color: Colors.red, fontSize: 16),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

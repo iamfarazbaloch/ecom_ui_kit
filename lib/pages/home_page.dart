@@ -46,6 +46,8 @@ class _HomePageState extends State<HomePage> {
             _trendingDealCard(),
             Gap(10),
             _buildProductList2(),
+            Gap(20),
+            _hotDeal(),
           ],
         ),
       ),
@@ -289,12 +291,10 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildProductList() {
     return SizedBox(
-      height: 280,
-
+      height: 400,
       child: ListView(
         padding: EdgeInsets.symmetric(horizontal: 20),
         scrollDirection: Axis.horizontal,
-
         children: [
           _buildCategoryCard(
             'assets/images/girl.png',
@@ -343,18 +343,23 @@ class _HomePageState extends State<HomePage> {
       width: 180,
       padding: EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: Colors.grey.shade200,
+        color: Colors.grey.shade100,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
-            ),
-            child: Image.asset(image),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+                child: Expanded(child: Image.asset(image)),
+              ),
+            ],
           ),
           Gap(10),
           Text(
@@ -372,7 +377,7 @@ class _HomePageState extends State<HomePage> {
               fontSize: 16,
             ),
           ),
-
+          Gap(10),
           Row(
             children: [
               Text(
@@ -383,6 +388,7 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.grey.shade600,
                 ),
               ),
+              Gap(10),
               Text(
                 priceOff,
                 style: TextStyle(
@@ -393,6 +399,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
+          Gap(16),
           Row(
             children: const [
               Icon(Icons.star, color: Colors.amber, size: 20),
@@ -411,7 +418,7 @@ class _HomePageState extends State<HomePage> {
   Widget _offerCard() {
     return Container(
       padding: EdgeInsets.all(12),
-      margin: EdgeInsets.all(16),
+      margin: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.grey.shade200,
         borderRadius: BorderRadius.circular(20),
@@ -463,17 +470,18 @@ class _HomePageState extends State<HomePage> {
         children: [
           Image.asset('assets/images/heel.png'),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Flat and Heels',
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 22,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text('Stand a chance to get rewarded!'),
-              Gap(6),
+              Wrap(children: [Text('Stand a chance to get\nrewarded!')]),
+
               Container(
                 padding: EdgeInsets.all(12),
                 margin: EdgeInsets.all(8),
@@ -508,7 +516,7 @@ class _HomePageState extends State<HomePage> {
       margin: EdgeInsets.all(16),
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.pink,
+        color: Colors.pink.shade400,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
@@ -562,7 +570,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildProductList2() {
     return SizedBox(
-      height: 280,
+      height: 350,
 
       child: ListView(
         padding: EdgeInsets.symmetric(horizontal: 20),
@@ -607,6 +615,72 @@ class _HomePageState extends State<HomePage> {
             'The Titan Men Watch is a modern black color',
             '250',
             '50%',
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _hotDeal() {
+    return Container(
+      height: 340,
+      width: double.infinity,
+      margin: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade100,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: double.infinity,
+            height: 240,
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+              child: Image.asset('assets/images/hot.png', fit: BoxFit.cover),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'New Arrivals',
+              style: TextStyle(color: Colors.black, fontSize: 22),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Summer's 25 Collection",
+                  style: TextStyle(color: Colors.black, fontSize: 18),
+                ),
+                Container(
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    border: Border.all(color: Colors.white),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'See All',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+
+                      Icon(Icons.arrow_forward, color: Colors.white),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
