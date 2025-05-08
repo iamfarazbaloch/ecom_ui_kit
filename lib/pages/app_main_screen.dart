@@ -2,7 +2,6 @@ import 'package:ecom_ui_kit/pages/cart_page.dart';
 import 'package:ecom_ui_kit/pages/settings_page.dart';
 import 'package:ecom_ui_kit/pages/wishlist_page.dart';
 import 'package:flutter/material.dart';
-
 import 'home_page.dart';
 import 'search_page.dart';
 
@@ -28,29 +27,36 @@ class _AppMainScreenState extends State<AppMainScreen> {
     return Scaffold(
       body: IndexedStack(index: currentIndex, children: pages),
       bottomNavigationBar: BottomNavigationBar(
-        elevation: 2,
+        elevation: 4,
         currentIndex: currentIndex,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.grey.shade300,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
+        selectedItemColor: Colors.red,
+        unselectedItemColor: Colors.grey.shade500,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        iconSize: 30,
         onTap: (value) {
           setState(() {
             currentIndex = value;
           });
         },
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
+            icon: Icon(Icons.home_outlined),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_border_outlined),
             label: 'Wishlist',
           ),
           BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
+            icon: Icon(Icons.search_outlined),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings_outlined),
             label: 'Settings',
           ),
         ],
