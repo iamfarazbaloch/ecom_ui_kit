@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:ecom_ui_kit/pages/home_page.dart';
+import 'package:ecom_ui_kit/pages/app_main_screen.dart';
 import 'package:ecom_ui_kit/widgets/my_button.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -55,7 +55,7 @@ class GetStartedPage extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const HomePage(),
+                          builder: (context) => const AppMainScreen(),
                         ),
                       );
                     },
