@@ -41,6 +41,11 @@ class _HomePageState extends State<HomePage> {
             _buildProductList(),
             Gap(20),
             _offerCard(),
+            _heel(),
+            Gap(10),
+            _trendingDealCard(),
+            Gap(10),
+            _buildProductList2(),
           ],
         ),
       ),
@@ -405,20 +410,203 @@ class _HomePageState extends State<HomePage> {
 
   Widget _offerCard() {
     return Container(
-      width: 180,
-      padding: EdgeInsets.all(4),
+      padding: EdgeInsets.all(12),
+      margin: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.grey.shade200,
         borderRadius: BorderRadius.circular(20),
       ),
-      child: Column(
+      child: Row(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
+          Image.asset('assets/images/offer.png'),
+
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      'Spacial offer',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 22,
+                      ),
+                    ),
+                    Gap(4),
+                    Image.asset('assets/icons/sk.png'),
+                  ],
+                ),
+                Gap(6),
+                Text(
+                  'We make sure you get the\noffer you need at best prices',
+                  style: TextStyle(color: Colors.grey.shade700, fontSize: 16),
+                ),
+              ],
             ),
-            child: Image.asset('assets/images/offer.png'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _heel() {
+    return Container(
+      margin: EdgeInsets.all(16),
+      padding: EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade200,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        children: [
+          Image.asset('assets/images/heel.png'),
+          Column(
+            children: [
+              Text(
+                'Flat and Heels',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text('Stand a chance to get rewarded!'),
+              Gap(6),
+              Container(
+                padding: EdgeInsets.all(12),
+                margin: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Row(
+                  spacing: 4,
+                  children: [
+                    Text(
+                      'Visit now',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Icon(Icons.arrow_forward, color: Colors.white),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _trendingDealCard() {
+    return Container(
+      margin: EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.pink,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Row(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Trending Products',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Gap(6),
+              Row(
+                children: [
+                  Icon(Icons.calendar_month, color: Colors.white),
+                  Gap(5),
+                  Text(
+                    'Last Date: 30/10/2025',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          Spacer(),
+          Container(
+            padding: EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.white),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              children: [
+                Text(
+                  'See All',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+                Gap(5),
+                Icon(Icons.arrow_forward, color: Colors.white),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildProductList2() {
+    return SizedBox(
+      height: 280,
+
+      child: ListView(
+        padding: EdgeInsets.symmetric(horizontal: 20),
+        scrollDirection: Axis.horizontal,
+
+        children: [
+          _buildCategoryCard(
+            'assets/images/w.png',
+            'IWC Schaffhausen',
+            'Neque porro quisquam est qui dolorem ipsum quia',
+            '250',
+            '50%',
+          ),
+          Gap(16),
+          _buildCategoryCard(
+            'assets/images/sandal.png',
+            'Do Bhai Women Sandal',
+            'Neque porro quisquam est qui dolorem ipsum quia',
+            '250',
+            '50%',
+          ),
+          Gap(16),
+          _buildCategoryCard(
+            'assets/images/sn.png',
+            'Labbin White Sneakers',
+            'Hair Straightening Brush With Infused Bristles.',
+            '250',
+            '50%',
+          ),
+          Gap(16),
+          _buildCategoryCard(
+            'assets/images/lp.png',
+            'Persian purse',
+            'The Titan Men Watch is a modern black color',
+            '250',
+            '50%',
+          ),
+          Gap(16),
+          _buildCategoryCard(
+            'assets/images/lip.png',
+            'Lipstick',
+            'The Titan Men Watch is a modern black color',
+            '250',
+            '50%',
           ),
         ],
       ),
