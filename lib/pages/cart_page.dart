@@ -1,3 +1,4 @@
+import 'package:ecom_ui_kit/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 class CartPage extends StatefulWidget {
